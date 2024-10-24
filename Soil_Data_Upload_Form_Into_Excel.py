@@ -10,6 +10,7 @@ import numpy as np
 import os
 
 # Load or create the external_data.xlsx file
+# @st.cache_data
 def load_or_create_excel():
     file_path = 'external_data_2.xlsx'
     if not os.path.exists(file_path):
@@ -30,6 +31,7 @@ def append_to_excel(data):
     df.to_excel(file_path, index=False)
 
 # Function to load GeoJSON files
+# @st.cache_data
 def load_geojson_files(geojson_paths):
     geojson_data = []
     for geojson_path in geojson_paths:
@@ -127,8 +129,8 @@ if st.button('Refresh Data'):
 
 # Render the map
 st.session_state['map'] = main(geojson_paths, file_paths, {'external_data_2.xlsx': {'lat_col': 'Loc X', 'lon_col': 'Loc Y'}})
-# folium_static(st.session_state['map'], width=800, height=600)
-st_folium(st.session_state['map'], width=800, height=600)
+folium_static(st.session_state['map'], width=800, height=600)
+# st_folium(st.session_state['map'], width=800, height=600)
 
 # Form for adding data
 st.title("Add Soil Data")
