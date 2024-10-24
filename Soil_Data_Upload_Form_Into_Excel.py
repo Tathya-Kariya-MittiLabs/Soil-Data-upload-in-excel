@@ -4,6 +4,7 @@ import streamlit as st
 import pandas as pd
 import folium
 from streamlit_folium import folium_static
+from streamlit_folium import st_folium
 import geopandas as gpd
 import numpy as np
 import os
@@ -126,7 +127,8 @@ if st.button('Refresh Data'):
 
 # Render the map
 st.session_state['map'] = main(geojson_paths, file_paths, {'external_data_2.xlsx': {'lat_col': 'Loc X', 'lon_col': 'Loc Y'}})
-folium_static(st.session_state['map'], width=800, height=600)
+# folium_static(st.session_state['map'], width=800, height=600)
+st_folium(st.session_state['map'], width=800, height=600)
 
 # Form for adding data
 st.title("Add Soil Data")
